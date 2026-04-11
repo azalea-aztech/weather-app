@@ -12,6 +12,7 @@ function buildURL(location, params = {}) {
 
 function CurrentData(responseData) {
     const currentAll = responseData.currentConditions;
+    this.date = currentAll.datetime;
     this.temp = currentAll.temp;
     this.cloudCover = currentAll.cloudcover;
     this.rain = currentAll.precip;
@@ -35,7 +36,7 @@ function getCurrentData(location) {
     return fetch(url)
         .then(res => res.json())
         .then(data => {
-            //console.log(data);
+            console.log(data);
             return data;
         });
 }
@@ -60,9 +61,9 @@ const searchBtn = document.getElementById("locationBtn");
 searchBtn.addEventListener("click", () => {
     let location = searchBar.value;
     if(location !== "") {
-        get15DaysData(location);
+        getCurrentData(location);
     }
-})
+});
 
 /*getCurrentData("tartu").then(function(response) {
     const data = new CurrentData(response);
