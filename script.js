@@ -10,12 +10,20 @@ function buildURL(location, params = {}) {
     return `${BASE_URL}/${location}?${query.toString()}`;
 }
 
-function fh2Deg(tempFahrenheit) {
-    return (tempFahrenheit - 32) / 1.8;
-}
-
-function Data(responseData) {
-    this.temp = fh2Deg(responseData.days[0].hours[0].temp);
+function CurrentData(responseData) {
+    const currentAll = responseData.currentConditions;
+    this.temp = currentAll.temp;
+    this.cloudCover = currentAll.cloudcover;
+    this.rain = currentAll.precip;
+    this.uvindex = currentAll.uvindex;
+    this.wind = {
+        direction: currentAll.winddir,
+        speed: currentAll.windspeed
+    };
+    this.sunrise = currentAll.sunrise;
+    this.sunset = currentAll.sunset;
+    this.humidity = currentAll.humidity;
+    this.visibility = currentAll.visibility;
 }
 
 function getCurrentData(location) {
@@ -32,7 +40,12 @@ function getCurrentData(location) {
         });
 }
 
-getCurrentData("tartu");
+getCurrentData("tartu").then(function(response) {
+    const data = new CurrentData(response);
+    console.log(data);
+});
+
+
 
 // example usage: wait for the data before creating a Data instance
 /*getData("tartu").then(function(resp) {
