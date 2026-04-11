@@ -9,10 +9,47 @@
 
   <body>
     <!-- code  -->
-     <div>
-       <input type="text" placeholder="Search for location" id="locationInput">
-       <button id="locationBtn">Search</button>
-     </div>
+    <div id="container">
+      <div id="left-div">
+        <div id="searchbar">
+          <input type="text" placeholder="Search for location" id="locationInput">
+          <button id="locationBtn">Search</button>
+        </div>
+        <div id="pic"></div>
+        <div id="temp"></div>
+        <div id="datetime">
+          <div id="day"></div>
+          <div id="time"></div>
+        </div>
+        <div id="cloud-rain">
+          <div id="cloud-coverage"></div>
+          <div id="rain"></div>
+        </div>
+      </div>
+      <div id="right-div">
+        <div id="header">
+          <div id="choice">
+            <div id="today"></div>
+            <div id="week"></div>
+          </div>
+          <div id="temperature-choice">
+            <div id="celsius"></div>
+            <div id="fahrenheit"></div>
+          </div>
+        </div>
+        <div id="week-overview"></div>
+        <div id="today">
+          <div id="title"></div>
+          <div id="cards">
+            <div id="uvindex"></div>
+            <div id="wind"></div>
+            <div id="sun"></div>
+            <div id="humidity"></div>
+            <div id="visibility"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 
