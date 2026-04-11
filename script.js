@@ -35,15 +35,41 @@ function getCurrentData(location) {
     return fetch(url)
         .then(res => res.json())
         .then(data => {
+            //console.log(data);
+            return data;
+        });
+}
+
+function get15DaysData(location) {
+    const url = buildURL(location, {
+        unitGroup: "metric",
+        include: "days",
+    });
+
+    return fetch(url)
+        .then(res => res.json())
+        .then(data => {
             console.log(data);
             return data;
         });
 }
 
-getCurrentData("tartu").then(function(response) {
+const searchBar = document.getElementById("locationInput");
+const searchBtn = document.getElementById("locationBtn");
+
+searchBtn.addEventListener("click", () => {
+    let location = searchBar.value;
+    if(location !== "") {
+        get15DaysData(location);
+    }
+})
+
+/*getCurrentData("tartu").then(function(response) {
     const data = new CurrentData(response);
     console.log(data);
-});
+});*/
+
+//get15DaysData("Tartu");
 
 
 
