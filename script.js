@@ -37,8 +37,15 @@ function getCurrentData(location) {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            setCurrentData(data);
             return data;
         });
+}
+
+const currentTempWidg = document.getElementById("temp");
+
+function setCurrentData(data) {
+    currentTempWidg.innerText = data.currentConditions.temp;
 }
 
 function get15DaysData(location) {
