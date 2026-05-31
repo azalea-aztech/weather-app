@@ -1,6 +1,8 @@
 const BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline";
 const API_KEY = "FHV2SK7XT9PCED2JFRQZP58EJ";
 
+const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 function buildURL(location, params = {}) {
     const query = new URLSearchParams({
         key: API_KEY,
@@ -43,9 +45,15 @@ function getCurrentData(location) {
 }
 
 const currentTempWidg = document.getElementById("temp");
+const currentDayWidg = document.getElementById("day");
+const currentTimeWidg = document.getElementById("time");
+
+const date = new Date();
 
 function setCurrentData(data) {
     currentTempWidg.innerText = data.currentConditions.temp;
+    currentDayWidg.innerText = DAYS[date.getDay()];
+    currentTimeWidg.innerText = data.currentConditions.datetime;
 }
 
 function get15DaysData(location) {
