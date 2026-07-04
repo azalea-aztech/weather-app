@@ -53,6 +53,27 @@ const currentRainWidg = document.getElementById("rain");
 
 const date = new Date();
 
+const weekOverviewDiv = document.getElementById("week-overview");
+let weekDivs = weekOverviewDiv.querySelectorAll("div");
+
+function setWeekData(data) {
+    let i = 0;
+    weekDivs.forEach(div => {
+        let day = document.createElement("p");
+        let conditions = document.createElement("p");
+        let temps = document.createElement("p");
+
+        day.innerText = data.days[i].datetime;
+        conditions.innerText = data.days[i].conditions;
+        temps.innerText = `${data.days[i].tempmax} / ${data.days[i].tempmin}`;
+        
+        div.appendChild(day);
+        div.appendChild(conditions);
+        div.appendChild(temps);
+        i += 1;
+    });
+}
+
 function setCurrentData(data) {
     currentTempWidg.innerText = data.currentConditions.temp;
     currentDayWidg.innerText = DAYS[date.getDay()];
@@ -60,6 +81,8 @@ function setCurrentData(data) {
 
     currentCloudCoverWidg.innerText = data.currentConditions.cloudcover;
     currentRainWidg.innerText = data.currentConditions.precip;
+
+    setWeekData(data);
 }
 
 function get15DaysData(location) {
@@ -85,8 +108,6 @@ searchBtn.addEventListener("click", () => {
         getCurrentData(location);
     }
 });
-
-
 
 /*getCurrentData("tartu").then(function(response) {
     const data = new CurrentData(response);
