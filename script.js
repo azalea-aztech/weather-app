@@ -59,9 +59,9 @@ let weekDivs = weekOverviewDiv.querySelectorAll("div");
 function setWeekData(data) {
     let i = 0;
     weekDivs.forEach(div => {
-        let day = document.createElement("p");
-        let conditions = document.createElement("p");
-        let temps = document.createElement("p");
+        const day = document.createElement("p");
+        const conditions = document.createElement("p");
+        const temps = document.createElement("p");
 
         day.innerText = data.days[i].datetime;
         conditions.innerText = data.days[i].conditions;
@@ -74,6 +74,24 @@ function setWeekData(data) {
     });
 }
 
+function setHighlights(data) {
+    const uvIndex = document.getElementById("uvidex-value");
+    const windSpeed = document.getElementById("wind-speed");
+    const windDir = document.getElementById("wind-direction");
+    const sunrise = document.getElementById("sunrise");
+    const sunset = document.getElementById("sunset");
+    const humidity = document.getElementById("humidity-value");
+    const visibility = document.getElementById("visibility-value");
+
+    uvIndex.innerText = data.currentConditions.uvindex;
+    windSpeed.innerText = data.currentConditions.windspeed;
+    windDir.innerText = data.currentConditions.winddir;
+    sunrise.innerText = data.currentConditions.sunrise;
+    sunset.innerText = data.currentConditions.sunset;
+    humidity.innerText = `${data.currentConditions.humidity} %`;
+    visibility.innerText = `${data.currentConditions.visibility} km`; 
+}
+
 function setCurrentData(data) {
     currentTempWidg.innerText = data.currentConditions.temp;
     currentDayWidg.innerText = DAYS[date.getDay()];
@@ -83,6 +101,7 @@ function setCurrentData(data) {
     currentRainWidg.innerText = data.currentConditions.precip;
 
     setWeekData(data);
+    setHighlights(data);
 }
 
 function get15DaysData(location) {
