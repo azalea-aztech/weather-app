@@ -48,12 +48,18 @@ const currentTempWidg = document.getElementById("temp");
 const currentDayWidg = document.getElementById("day");
 const currentTimeWidg = document.getElementById("time");
 
+const currentCloudCoverWidg = document.getElementById("cloud-coverage");
+const currentRainWidg = document.getElementById("rain");
+
 const date = new Date();
 
 function setCurrentData(data) {
     currentTempWidg.innerText = data.currentConditions.temp;
     currentDayWidg.innerText = DAYS[date.getDay()];
     currentTimeWidg.innerText = data.currentConditions.datetime;
+
+    currentCloudCoverWidg.innerText = data.currentConditions.cloudcover;
+    currentRainWidg.innerText = data.currentConditions.precip;
 }
 
 function get15DaysData(location) {
@@ -79,6 +85,8 @@ searchBtn.addEventListener("click", () => {
         getCurrentData(location);
     }
 });
+
+
 
 /*getCurrentData("tartu").then(function(response) {
     const data = new CurrentData(response);
