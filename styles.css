@@ -1,0 +1,29 @@
+#container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+#left-div {
+
+}
+
+#right-div {
+
+}
+
+#choice {
+    display: flex;
+}
+
+#week-overview {
+    display: flex;
+}
+
+.weekDayCard {
+    padding: 5px;
+}
+
+#cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
